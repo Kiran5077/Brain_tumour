@@ -33,7 +33,7 @@ const Prediction = () => {
     formData.append('email', email);
 
     try {
-      const res = await fetch('http://localhost:5000/predict', {
+      const res = await fetch('https://brain-tumourbackend.onrender.com/predict', {
         method: 'POST',
         body: formData,
       });

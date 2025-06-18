@@ -7,7 +7,7 @@ const ManageContact = () => {
 
   const fetchMessages = async () => {
     try {
-      const response = await fetch("http://localhost:5000/admin/contacts");
+      const response = await fetch("https://brain-tumourbackend.onrender.com/admin/contacts");
       const data = await response.json();
 
       if (response.ok) {

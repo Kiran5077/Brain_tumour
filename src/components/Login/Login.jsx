@@ -17,7 +17,7 @@ const Login = ({ role = "user" }) => {
     try {
       const loginEndpoint = role === "admin" ? "/admin-login" : "/user-login";
 
-      const response = await fetch(`http://localhost:5000${loginEndpoint}`, {
+      const response = await fetch(`https://brain-tumourbackend.onrender.com${loginEndpoint}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

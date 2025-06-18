@@ -83,8 +83,7 @@ const Nav = () => {
 
                 {dropdownOpen && (
                   <div className="absolute top-full mt-2 right-0 bg-white border border-gray-200 rounded shadow-md py-1 text-sm w-40 z-50">
-                    <a href="#" className="block px-4 py-2 hover:bg-gray-100 text-gray-700">Profile</a>
-                    <Link to="/password" className="block px-4 py-2 hover:bg-gray-100 text-gray-700">Change Password</Link>
+                  
                     <button onClick={handleLogout} className="block px-4 py-2 hover:bg-gray-100 text-red-700">Logout</button>
                   </div>
                 )}

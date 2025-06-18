@@ -7,7 +7,7 @@ const AdminFeedback = () => {
 
   const fetchFeedback = async () => {
     try {
-      const response = await fetch("http://localhost:5000/get-feedback");
+      const response = await fetch("https://brain-tumourbackend.onrender.com/get-feedback");
       const data = await response.json();
 
       if (response.ok && data.success) {
