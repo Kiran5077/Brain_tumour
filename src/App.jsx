@@ -11,7 +11,6 @@ import Admin from "./components/Admin/AdminLogin";
 import Registration from "./components/Registration/Registration";
 import Footer from "./components/Footer/Footer";
 import AdminDashboard from './components/Admin/AdminDashboard';
-import ChangePassword from "./components/Change/ChangePassword";
 import AdminFeedback from "./components/Feedback/AdminFeedback";
 import ManagaeContact from "./components/Contact/ManageContact";
 import AdminPrediction from "./components/Prediction/AdminPrediction";
@@ -31,7 +30,6 @@ function App() {
       <Route path="/admin" element={<Admin/>}/>
       <Route path="/register" element={<Registration/>}/>
       <Route path="/admin-dashboard" element={<AdminDashboard/>}/>
-      <Route path="/password" element={<ChangePassword/>}/>
       <Route path="/adminfeedback" element={<AdminFeedback/>}/>
       <Route path="/managecontact" element={<ManagaeContact/>}/>
       <Route path="/adminprediction" element={<AdminPrediction/>}/>
