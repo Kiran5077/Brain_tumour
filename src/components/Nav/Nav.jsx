@@ -74,8 +74,8 @@ const Nav = () => {
 
           {isUser && !isAdmin && (
             <>
-              <Link to="/prediction" className="hover:text-gray-300">PREDICTION</Link>
-              <Link to="/feedback" className="hover:text-gray-300">FEEDBACK</Link>
+              <Link to="/prediction" className="hover:text-gray-300"><i className="fas fa-brain"></i>PREDICTION</Link>
+              <Link to="/feedback" className="hover:text-gray-300"> <i className="fas fa-comment-dots"></i>FEEDBACK</Link>
               <span className="text-blue-400">{userEmail}</span>
             </>
           )}
@@ -132,15 +132,13 @@ const Nav = () => {
 
             {isUser && !isAdmin && (
               <>
-                <li><Link to="/prediction" onClick={() => setMobileMenuOpen(false)} className="block hover:text-gray-300">PREDICTION</Link></li>
-                <li><Link to="/feedback" onClick={() => setMobileMenuOpen(false)} className="block hover:text-gray-300">FEEDBACK</Link></li>
-                <li className="text-blue-400">{userEmail}</li>
+                <li><Link to="/prediction" onClick={() => setMobileMenuOpen(false)} className="block hover:text-gray-300"><i className='fas fa-brain'></i>PREDICTION</Link></li>
+                <li><Link to="/feedback" onClick={() => setMobileMenuOpen(false)} className="block hover:text-gray-300"><i className="fas fa-comment-dots"></i>FEEDBACK</Link></li>
               </>
             )}
 
             {(isAdmin || isUser) && (
               <>
-                <li><Link to="/password" onClick={() => setMobileMenuOpen(false)} className="block hover:text-gray-300">Change Password</Link></li>
                 <li><button onClick={() => { handleLogout(); setMobileMenuOpen(false); }} className="block w-full text-left hover:text-red-700">Logout</button></li>
               </>
             )}
