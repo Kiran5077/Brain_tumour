@@ -68,7 +68,7 @@ const AdminPrediction = () => {
 
   const handleDeletePrediction = async (id) => {
     try {
-      const res = await fetch(`http://localhost:5000/delete-history/${id}`, {
+      const res = await fetch(`https://brain-tumourbackend.onrender.com/delete-history/${id}`, {
         method: "DELETE",
       });
 

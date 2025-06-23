@@ -27,7 +27,7 @@ const AdminFeedback = () => {
     if (!confirmDelete) return;
 
     try {
-      const response = await fetch(`http://localhost:5000/api/delete_feedback/${id}`, {
+      const response = await fetch(`https://brain-tumourbackend.onrender.com/api/delete_feedback/${id}`, {
         method: "DELETE",
       });
 

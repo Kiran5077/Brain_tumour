@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 
-
 const Nav = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -33,10 +32,15 @@ const Nav = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const toggleMobileMenu = (e) => {
+    e.stopPropagation();
+    setMobileMenuOpen(prev => !prev);
+  };
+
   return (
     <div className={`fixed w-full top-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-white text-black shadow-md' : 'bg-black text-white'}`}>
-      <header className={`flex items-center justify-between px-4 py-3 md:px-6 ${isScrolled ? 'bg-white text-black shadow-md' : 'bg-black text-white'}`}>
-        {/* Logo on the left */}
+      <header className="flex items-center justify-between px-4 py-3 md:px-6">
+        {/* Logo */}
         <div className="flex items-center space-x-2">
           <img src="/assets/brain4.jpg" alt="Brain icon" className="w-10 h-10 sm:w-7 sm:h-7 md:w-8 md:h-8" />
           <span className="font-bold text-sm sm:text-base md:text-lg whitespace-nowrap" style={gradientTextStyle}>
@@ -44,29 +48,17 @@ const Nav = () => {
           </span>
         </div>
 
-        {/* Right-aligned links (Desktop) */}
+        {/* Desktop Menu */}
         <div className="hidden md:flex items-center space-x-6 text-sm font-semibold">
-          <Link to="/" className="hover:bg-gray-700 px-2 py-1 rounded flex items-center space-x-1 transition-transform duration-300 transform hover:scale-105">
-            <i className="fas fa-home"></i><span>HOME</span>
-          </Link>
-          <Link to="/about" className="hover:bg-gray-700 px-2 py-1 rounded flex items-center space-x-1 transition-transform duration-300 transform hover:scale-105">
-            <i className="fas fa-info-circle"></i><span>ABOUT</span>
-          </Link>
-          <Link to="/contact" className="hover:bg-gray-700 px-2 py-1 rounded flex items-center space-x-1 transition-transform duration-300 transform hover:scale-105">
-            <i className="fas fa-envelope"></i><span>CONTACT</span>
-          </Link>
+          <Link to="/" className="hover:bg-gray-700 px-2 py-1 rounded flex items-center space-x-1"><i className="fas fa-home"></i><span>HOME</span></Link>
+          <Link to="/about" className="hover:bg-gray-700 px-2 py-1 rounded flex items-center space-x-1"><i className="fas fa-info-circle"></i><span>ABOUT</span></Link>
+          <Link to="/contact" className="hover:bg-gray-700 px-2 py-1 rounded flex items-center space-x-1"><i className="fas fa-envelope"></i><span>CONTACT</span></Link>
 
           {!isAdmin && !isUser && (
             <>
-              <Link to="/feedback" className="hover:bg-gray-700 px-2 py-1 rounded flex items-center space-x-1 transition-transform duration-300 transform hover:scale-105">
-                <i className="fas fa-comment-dots"></i><span>FEEDBACK</span>
-              </Link>
-              <Link to="/user" className="hover:bg-gray-700 px-2 py-1 rounded flex items-center space-x-1 transition-transform duration-300 transform hover:scale-105">
-                <i className="fas fa-user"></i><span>USER</span>
-              </Link>
-              <Link to="/register" className="bg-green-600 text-white px-3 py-1 rounded hover:bg-blue-700 flex items-center space-x-1 transition-transform duration-300 transform hover:scale-105">
-                <i className="fas fa-user-plus"></i><span>Register</span>
-              </Link>
+              <Link to="/feedback" className="hover:bg-gray-700 px-2 py-1 rounded flex items-center space-x-1"><i className="fas fa-comment-dots"></i><span>FEEDBACK</span></Link>
+              <Link to="/user" className="hover:bg-gray-700 px-2 py-1 rounded flex items-center space-x-1"><i className="fas fa-user"></i><span>USER</span></Link>
+              <Link to="/register" className="bg-green-600 text-white px-3 py-1 rounded hover:bg-blue-700 flex items-center space-x-1"><i className="fas fa-user-plus"></i><span>Register</span></Link>
             </>
           )}
 
@@ -97,9 +89,7 @@ const Nav = () => {
               </div>
               {dropdownOpen && (
                 <div className="absolute top-full mt-2 right-0 bg-white border border-gray-200 rounded shadow-md py-1 text-sm w-40 z-50 text-black">
-                  <button onClick={handleLogout} className="block px-4 py-2 hover:bg-gray-100 text-red-700 w-full text-left">
-                    Logout
-                  </button>
+                  <button onClick={handleLogout} className="block px-4 py-2 hover:bg-gray-100 text-red-700 w-full text-left">Logout</button>
                 </div>
               )}
             </div>
@@ -108,74 +98,50 @@ const Nav = () => {
 
         {/* Mobile Toggle */}
         <div className="md:hidden">
-          <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="focus:outline-none">
+          <button onClick={toggleMobileMenu} className="focus:outline-none">
             <i className={`fas fa-bars text-xl ${isScrolled ? 'text-black' : 'text-white'}`}></i>
           </button>
         </div>
       </header>
 
-      {/* Mobile Nav */}
+      {/* Mobile Menu */}
       {mobileMenuOpen && (
         <div className={`md:hidden px-4 py-2 ${isScrolled ? 'bg-black text-white' : 'bg-white text-black'}`}>
           <ul className="space-y-3 text-sm font-medium">
-            <li>
-              <Link to="/" className="flex items-center space-x-1 hover:bg-gray-700 px-2 py-1 rounded">
-                <i className="fas fa-home"></i><span>HOME</span>
-              </Link>
-            </li>
-            <li>
-              <Link to="/about" className="flex items-center space-x-1 hover:bg-gray-700 px-2 py-1 rounded">
-                <i className="fas fa-info-circle"></i><span>ABOUT</span>
-              </Link>
-            </li>
-            <li>
-              <Link to="/contact" className="flex items-center space-x-1 hover:bg-gray-700 px-2 py-1 rounded">
-                <i className="fas fa-envelope"></i><span>CONTACT</span>
-              </Link>
-            </li>
+            <li><Link to="/" onClick={() => setMobileMenuOpen(false)} className="flex items-center space-x-1 hover:bg-gray-700 px-2 py-1 rounded"><i className="fas fa-home"></i><span>HOME</span></Link></li>
+            <li><Link to="/about" onClick={() => setMobileMenuOpen(false)} className="flex items-center space-x-1 hover:bg-gray-700 px-2 py-1 rounded"><i className="fas fa-info-circle"></i><span>ABOUT</span></Link></li>
+            <li><Link to="/contact" onClick={() => setMobileMenuOpen(false)} className="flex items-center space-x-1 hover:bg-gray-700 px-2 py-1 rounded"><i className="fas fa-envelope"></i><span>CONTACT</span></Link></li>
 
             {!isAdmin && !isUser && (
               <>
-                <li>
-                  <Link to="/feedback" className="flex items-center space-x-1 hover:bg-gray-700 px-2 py-1 rounded">
-                    <i className="fas fa-comment-dots"></i><span>FEEDBACK</span>
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/user" className="flex items-center space-x-1 hover:bg-gray-700 px-2 py-1 rounded">
-                    <i className="fas fa-user"></i><span>USER</span>
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/register" className="bg-green-600 text-white px-3 py-1 rounded hover:bg-green-700 flex items-center space-x-1 justify-center">
-                    <i className="fas fa-user-plus"></i><span>Register</span>
-                  </Link>
-                </li>
+                <li><Link to="/feedback" onClick={() => setMobileMenuOpen(false)} className="flex items-center space-x-1 hover:bg-gray-700 px-2 py-1 rounded"><i className="fas fa-comment-dots"></i><span>FEEDBACK</span></Link></li>
+                <li><Link to="/user" onClick={() => setMobileMenuOpen(false)} className="flex items-center space-x-1 hover:bg-gray-700 px-2 py-1 rounded"><i className="fas fa-user"></i><span>USER</span></Link></li>
+                <li><Link to="/register" onClick={() => setMobileMenuOpen(false)} className="bg-green-600 text-white px-3 py-1 rounded hover:bg-green-700 flex items-center space-x-1 justify-center"><i className="fas fa-user-plus"></i><span>Register</span></Link></li>
               </>
             )}
 
             {isAdmin && (
               <>
-                <li><Link to="/managecontact" className="block hover:text-gray-300">MNGCONTACT</Link></li>
-                <li><Link to="/adminfeedback" className="block hover:text-gray-300">MNGFEEDBACK</Link></li>
-                <li><Link to="/adminprediction" className="block hover:text-gray-300">MNGPREDICTION</Link></li>
-                <li><Link to="/admin-dashboard" className="block hover:text-gray-300">REG USERS</Link></li>
+                <li><Link to="/managecontact" onClick={() => setMobileMenuOpen(false)} className="block hover:text-gray-300">MNGCONTACT</Link></li>
+                <li><Link to="/adminfeedback" onClick={() => setMobileMenuOpen(false)} className="block hover:text-gray-300">MNGFEEDBACK</Link></li>
+                <li><Link to="/adminprediction" onClick={() => setMobileMenuOpen(false)} className="block hover:text-gray-300">MNGPREDICTION</Link></li>
+                <li><Link to="/admin-dashboard" onClick={() => setMobileMenuOpen(false)} className="block hover:text-gray-300">REG USERS</Link></li>
                 <li className="text-blue-400">{adminEmail}</li>
               </>
             )}
 
             {isUser && !isAdmin && (
               <>
-                <li><Link to="/prediction" className="block hover:text-gray-300">PREDICTION</Link></li>
-                <li><Link to="/feedback" className="block hover:text-gray-300">FEEDBACK</Link></li>
+                <li><Link to="/prediction" onClick={() => setMobileMenuOpen(false)} className="block hover:text-gray-300">PREDICTION</Link></li>
+                <li><Link to="/feedback" onClick={() => setMobileMenuOpen(false)} className="block hover:text-gray-300">FEEDBACK</Link></li>
                 <li className="text-blue-400">{userEmail}</li>
               </>
             )}
 
             {(isAdmin || isUser) && (
               <>
-                <li><Link to="/password" className="block hover:text-gray-300">Change Password</Link></li>
-                <li><button onClick={handleLogout} className="block w-full text-left hover:text-red-700">Logout</button></li>
+                <li><Link to="/password" onClick={() => setMobileMenuOpen(false)} className="block hover:text-gray-300">Change Password</Link></li>
+                <li><button onClick={() => { handleLogout(); setMobileMenuOpen(false); }} className="block w-full text-left hover:text-red-700">Logout</button></li>
               </>
             )}
           </ul>
