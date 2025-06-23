@@ -1,107 +1,117 @@
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import './SendFeedback.css'; // Custom fonts or overrides
+import { useState } from "react";
+import brainBg from "/assets/brain5.jpg"; // Use a good-quality transparent image
 
-const Feedback = () => {
-  const [feedback, setFeedback] = useState("");
-  const [submitted, setSubmitted] = useState(false);
+export default function Feedback() {
+  const [formData, setFormData] = useState({
+    fullName: "",
+    email: "",
+    feedbackTitle: "",
+    category: "General Feedback",
+    rating: 5,
+    detailedFeedback: "",
+  });
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-      const email = localStorage.getItem("email");
-      if (!email) {
-        alert("please register or login");
-        return;
-      }
-
-     try {
-
-      const response = await fetch("https://brain-tumourbackend.onrender.com/send-feedback", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ feedback, email })
-      });
-
-      const data = await response.json();
-
-      if (response.ok && data.success) {
-        setSubmitted(true);
-        setFeedback("");
-        setTimeout(() => setSubmitted(false), 5000);
-      } else {
-        alert(data.message || "Failed to send feedback");
-      }
-    } catch (error) {
-      alert("Server error. Please try again later.");
+    const email = localStorage.getItem("email");
+    if (!email) {
+      alert("Register or log in first");
+      return;
+    }
+    const res = await fetch("https://brain-tumourbackend.onrender.com/feedback", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(formData),
+    });
+    if (res.ok){
+        alert("Feedback submitted!");
+    setFormData({
+      fullName: "",
+      email: "",
+      feedbackTitle: "",
+      category: "General Feedback",
+      rating: 5,
+      detailedFeedback: "",
+    });
+    }
+    else {
+      alert("Submission failed.");
     }
   };
 
   return (
-    <div className="bg-gray-100 font-poppins min-h-screen">
-      {/* Header */}
-      <motion.div
-        className="bg-white font-quicksand"
-        initial={{ opacity: 0, y: 50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-      >
-        <header className="relative w-full h-36 sm:h-40 bg-black/80 flex flex-col justify-center px-4 sm:px-10">
-          <img
-            src="https://storage.googleapis.com/a1aa/image/b95e47d8-0974-478d-ade1-e79096464389.jpg"
-            alt="Brain background"
-            className="absolute inset-0 w-full h-full object-cover opacity-30"
-          />
-          <h1 className="relative text-white text-2xl sm:text-3xl font-semibold">
-            Send Feedback
-          </h1>
-          <nav className="relative mt-1 text-xs sm:text-sm text-gray-300">
-            <span>Home</span>
-            <span className="mx-1">/</span>
-            <span className="text-green-500">Send Feedback</span>
-          </nav>
-        </header>
-      </motion.div>
+    <div
+      className="min-h-screen flex items-center pt-20 justify-center bg-cover bg-center px-4"
+      style={{ backgroundImage: `url(${brainBg})` }}
+    >
+     
+      <div className="max-w-xl w-full bg-white/30 backdrop-blur-md shadow-2xl rounded-xl p-6 border border-white border-opacity-30">
+        <h2 className="text-3xl font-bold text-center mb-6 text-white">
+          Share Your Experience
+        </h2>
 
-      {/* Main Section */}
-      <main className="w-full px-4 sm:px-6 lg:px-8 mt-10">
-        <div className="max-w-xl mx-auto bg-white rounded-lg p-6 shadow-md">
-          <h2 className="text-center text-gray-800 text-lg sm:text-xl font-semibold mb-4">
-            Feedback!
-          </h2>
-
-          {!submitted ? (
-            <form onSubmit={handleSubmit}>
-              <textarea
-                value={feedback}
-                onChange={(e) => setFeedback(e.target.value)}
-                className="w-full border border-gray-300 rounded-md resize-none h-28 p-3 text-gray-700 text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-green-600"
-                placeholder="Write your feedback here..."
-                required
-              ></textarea>
-
-              <motion.button
-                type="submit"
-                whileTap={{ scale: 0.97 }}
-                className="mt-4 w-full bg-green-600 hover:bg-green-700 text-white py-2 rounded-md transition"
-              >
-                Send
-              </motion.button>
-            </form>
-          ) : (
-            <motion.div
-              className="text-center text-green-700 text-base font-semibold mt-4"
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5 }}
-            >
-              ✅ Feedback Sent! Thank you.
-            </motion.div>
-          )}
+        <div className="mb-4 text-center">
+          <label className="block text-white font-medium mb-1">
+            Overall Rating
+          </label>
+          <div className="text-yellow-400 text-2xl">★★★★★</div>
         </div>
-      </main>
-    </div>
-  );
-};
 
-export default Feedback;
+        <form onSubmit={handleSubmit} className="space-y-4 text-white">
+          <input
+            type="text"
+            name="fullName"
+            placeholder="Full Name"
+            onChange={handleChange}
+            required
+            className="w-full p-3 border border-white/50 rounded bg-white/10 text-white placeholder-white"
+          />
+          <input
+            type="email"
+            name="email"
+            placeholder="Email Address"
+            onChange={handleChange}
+            required
+            className="w-full p-3 border border-white/50 rounded bg-white/10 text-white placeholder-white"
+          />
+          <input
+            type="text"
+            name="feedbackTitle"
+            placeholder="Feedback Title"
+            onChange={handleChange}
+            required
+            className="w-full p-3 border border-white/50 rounded bg-white/10 text-white placeholder-white"
+          />
+          <select
+            name="category"
+            value={formData.category}
+            onChange={handleChange}
+            className="w-full p-3 border border-white/50 rounded bg-white/10 text-white"
+          >
+            <option className="text-black">General Feedback</option>
+            <option className="text-black">Bug Report</option>
+            <option className="text-black">Feature Request</option>
+          </select>
+          <textarea
+            name="detailedFeedback"
+            placeholder="Your Feedback"
+            onChange={handleChange}
+            rows="4"
+            className="w-full p-3 border border-white/50 rounded bg-white/10 text-white placeholder-white"
+          />
+          <button
+            type="submit"
+            className="w-full bg-blue-600 text-white py-3 rounded hover:bg-blue-700 transition"
+          >
+            Submit Feedback
+          </button>
+        </form>
+      </div>
+    </div>
+    
+  );
+}

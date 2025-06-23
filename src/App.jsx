@@ -14,6 +14,9 @@ import AdminDashboard from './components/Admin/AdminDashboard';
 import AdminFeedback from "./components/Feedback/AdminFeedback";
 import ManagaeContact from "./components/Contact/ManageContact";
 import AdminPrediction from "./components/Prediction/AdminPrediction";
+import Why from "./components/Home/Why";
+import Features from "./components/Prediction/Features";
+
 
 
 function App() {
@@ -33,6 +36,9 @@ function App() {
       <Route path="/adminfeedback" element={<AdminFeedback/>}/>
       <Route path="/managecontact" element={<ManagaeContact/>}/>
       <Route path="/adminprediction" element={<AdminPrediction/>}/>
+      <Route path="/why" element={<Why/>}/>
+      <Route path="/feture" element={<Features/>}/>
+   
       </Routes>
     
      <Footer/>

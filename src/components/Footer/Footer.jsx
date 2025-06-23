@@ -5,6 +5,11 @@ import { Link } from 'react-router-dom';
 function Footer() {
   return (
     <footer className="footer">
+      {/* Floating brains */}
+      <div className="brains-floating">
+        
+      </div>
+
       <div className="footer-container">
         <div className="footer-section footer-brand">
           <h3>Brain Tumor Detection</h3>
@@ -23,14 +28,14 @@ function Footer() {
 
         <div className="footer-section footer-contact">
           <h4>Contact</h4>
-          <p>Email: support@btdetect.ai</p>
-          <p>Phone: +91 98765 43210</p>
-          <p>Location: AI Health Lab, India</p>
+          <p>Email: pranshujena2511@gmail.com</p>
+          <p>Phone:7978120502</p>
+            <p>Location:****</p>
         </div>
       </div>
 
       <div className="footer-bottom">
-        <p>&copy; {new Date().getFullYear()} Brain Tumor Detection. All rights reserved.</p>
+        <p>&copy; {new Date().getFullYear()} Tumordetect. All rights reserved.</p>
       </div>
     </footer>
   );

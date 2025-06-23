@@ -1,155 +1,238 @@
 import React from "react";
-import { motion } from 'framer-motion';
-import "./Home.css"; // Optional if you're importing fonts separately
+import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 import { Link } from "react-router-dom";
 
+
+import "./Home.css";
+import Why from "./Why";
+
 const Home = () => {
+  const [introRef, introInView] = useInView({ triggerOnce: true, threshold: 0.3 });
+
   return (
     <div className="bg-white text-gray-900 font-quicksand">
-      {/* Top info bar */}
-      <motion.div
-            className="bg-white font-quicksand"
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: 'easeOut' }}
-          >
-      <div className="flex justify-between items-center text-xs text-gray-500 px-4 py-1 border-b border-gray-200">
-        <div className="flex items-center space-x-2">
-          <i className="fas fa-map-marker-alt"></i>
-          <span>123 ABC Street, XYZ ***</span>
-          <span className="hidden sm:inline">|</span>
-          <span className="hidden sm:inline">Mon - Fri: 09.00 AM - 09.00 PM</span>
-        </div>
-        <div className="flex items-center space-x-4 text-right">
-          <div className="hidden sm:flex items-center space-x-1">
-            <i className="fas fa-phone-alt"></i>
-            <span>+91 12345*****</span>
-          </div>
-          <a href="#" aria-label="Facebook" className="text-gray-500 hover:text-gray-700">
-            <i className="fab fa-facebook-f"></i>
-          </a>
-          <a href="#" aria-label="Twitter" className="text-gray-500 hover:text-gray-700">
-            <i className="fab fa-twitter"></i>
-          </a>
-          <a href="#" aria-label="LinkedIn" className="text-gray-500 hover:text-gray-700">
-            <i className="fab fa-linkedin-in"></i>
-          </a>
-          <a href="#" aria-label="Instagram" className="text-gray-500 hover:text-gray-700">
-            <i className="fab fa-instagram"></i>
-          </a>
-        </div>
-       
-      </div>
 
-     
-
-      {/* Main Content */}
-       <main className="flex flex-col md:flex-row max-w-7xl mx-auto mt-6 px-4 md:px-0">
-       
-        <section className="w-full md:w-1/2 bg-gradient-to-br from-gray-900 via-black to-gray-800 text-white px-4 py-8 sm:px-6 sm:py-10 md:p-14 flex flex-col justify-center space-y-6 sm:space-y-8 rounded-lg shadow-2xl mx-auto">
-  <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold leading-tight tracking-wide drop-shadow-lg text-center md:text-left">
-    Brain Tumor Detection
-  </h1>
-
-  <div className="flex flex-col sm:flex-row sm:justify-center md:justify-start items-center sm:space-x-5 space-y-3 sm:space-y-0">
-    <Link to="/prediction" className="w-full sm:w-auto">
-      <button
-        type="button"
-        className="w-full sm:w-auto bg-green-600 hover:bg-green-700 text-white text-sm font-semibold px-6 py-3 rounded-lg shadow-lg transition transform hover:-translate-y-0.5"
-      >
-        Start Prediction
-      </button>
-    </Link>
-    <button
-      type="button"
-      className="w-full sm:w-auto border border-white text-white text-sm font-semibold px-6 py-3 rounded-lg shadow-lg hover:bg-white hover:text-black transition transform hover:-translate-y-0.5"
+      {/* Hero Section with Background Video */}
+     {/* Hero Section with Background Video */}
+<div className="relative w-full h-[100vh] overflow-hidden">
+  <video
+    className="absolute top-12 left-0 w-full h-full  object-center object-cover"
+    src="/assets/video.mp4"
+    autoPlay
+    muted
+    loop
+    playsInline
+  />
+  <div className="absolute inset-0  bg-opacity-50 flex justify-center items-center px-4">
+    <motion.div
+      className="bg-transparent bg-opacity-10 border border-white border-opacity-30 backdrop-blur-md rounded-xl p-8 max-w-2xl text-center text-black shadow-2xl"
+      initial={{ opacity: 0, y: 60 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8 }}
     >
-      View History
-    </button>
-  </div>
-
-  <p className="text-sm sm:text-base leading-relaxed max-w-md text-gray-300 drop-shadow-md text-center md:text-left mx-auto md:mx-0">
-    Upload your brain scan images and let the system detect the presence of a tumor with precision.
-    <br className="hidden sm:block" />
-    Review your past predictions easily.
-  </p>
-</section>
-
-        <section className="md:w-1/2">
-          <img
-            src="https://storage.googleapis.com/a1aa/image/0ebc9bc3-43d7-4042-4226-8db0a00836ea.jpg"
-            alt="Doctor in white coat holding a glowing brain hologram in hand with dark background"
-            className="w-full h-auto object-cover"
-          />
-        </section>
-      
-      </main>
-     </motion.div>
-       <div className="max-w-7xl mx-auto px-6 py-16 flex flex-col md:flex-row items-center md:items-start gap-10 md:gap-20">
-        {/* Left Side Text */}
-        <motion.div
-                    className="bg-white font-quicksand"
-                    initial={{ opacity: 0, y: 50 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, ease: 'easeOut' }}
-                  >
-        <div className="flex-1 max-w-xl">
-          <p className="text-xs text-green-600 mb-2 flex items-center gap-1">
-            <span className="w-2 h-2 rounded-full bg-green-600 inline-block"></span>
-            Introduction
-          </p>
-          <h1 className="text-3xl md:text-4xl font-semibold text-gray-800 leading-tight mb-6">
-            Brain <span className="text-green-600">Tumor</span> Detection using Deep Learning | CNN
-          </h1>
-          <div className="text-xs text-gray-600 font-semibold mb-4">Technology Used:</div>
-          <ul className="space-y-3 text-gray-700 text-sm font-medium">
-            <li className="flex items-center gap-2">
-              <i className="fas fa-check-circle text-green-600"></i>
-              HTML/CSS/JS/Bootstrap
-            </li>
-            <li className="flex items-center gap-2">
-              <i className="fas fa-check-circle text-green-600"></i>
-              Python Django
-            </li>
-            <li className="flex items-center gap-2">
-              <i className="fas fa-check-circle text-green-600"></i>
-              Sqlite Database
-            </li>
-            <li className="flex items-center gap-2">
-              <i className="fas fa-check-circle text-green-600"></i>
-              Deep Learning | CNN
-            </li>
-          </ul>
-          <Link to="/prediction">
-          <button className="mt-8 bg-green-600 text-white text-sm font-semibold px-6 py-2 rounded-md hover:bg-green-700 transition">
+      <h1 className="text-4xl md:text-5xl font-extrabold mb-4 drop-shadow-lg">
+        Brain Tumor Detection
+      </h1>
+      <p className="max-w-xl mx-auto text-sm sm:text-base text-black-200 mb-6 drop-shadow-md">
+        Upload your brain scan images and let the system detect the presence of a tumor with precision.
+      </p>
+      <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
+        <Link to="/prediction">
+          <button className="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg shadow-lg transition">
             Start Prediction
           </button>
-          </Link>
-        </div>
-</motion.div>
-        {/* Right Side Image */}
-        <div className="flex-1 relative max-w-md md:max-w-lg">
-          <motion.div
-                    className="bg-white font-quicksand"
-                    initial={{ opacity: 0, y: 50 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, ease: 'easeOut' }}
-                  >
-          <div className="border-2 border-green-600 p-1">
-            <img
-              src="https://storage.googleapis.com/a1aa/image/162f2aeb-09e3-406c-4fe2-9e384a5a756a.jpg"
-              alt="Illustration of a brain with icons representing detection"
-              className="w-full h-auto object-cover"
-              width={600}
-              height={400}
-            />
+        </Link>
+        <Link to="/about">
+          <button className="border border-white  bg-black text-white px-6 py-3 rounded-lg transition">
+            Learn More
+          </button>
+        </Link>
+      </div>
+    </motion.div>
+  </div>
+</div>
+
+
+      {/* Introduction Section remains unchanged */}
+      <section className="bg-white py-24 px-6 md:px-24 text-white overflow-hidden">
+        <div className="w-full max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-16 px-4 sm:px-6">
+          <div className="w-full md:w-[40%]">
+            <motion.h3
+              initial={{ opacity: 0, y: -30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7 }}
+              className="text-sm text-green-400 uppercase tracking-widest mb-3"
+            >
+              How We Work
+            </motion.h3>
+            <motion.h2
+              initial={{ opacity: 0, y: -30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.9 }}
+              className="text-3xl md:text-4xl font-bold mb-6  text-black leading-snug"
+            >
+              5 Simple Steps for Brain Tumor Detection
+            </motion.h2>
+            <motion.p
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ delay: 0.3, duration: 0.8 }}
+              className="text-gray-400 mb-12"
+            >
+              The Brain Tumor Detection System is a web-based application that uses advanced AI 
+              models to predict brain tumors from MRI or CT scan images. The system is designed to
+               provide quick, accurate, and accessible predictions to assist patients and healthcare 
+               providers in early detection.
+
+              <br />
+              <br />
+                Our cutting-edge technology combines artificial intelligence with medical expertise 
+                to provide the most accurate brain tumor detection available — accessible anytime
+                 with 24/7 service support.
+            </motion.p>
+
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.5 }}
+              className="mt-8 md:mt-12"
+            >
+              <a
+              href="https://www.youtube.com/watch?v=fPhyKvOe8X8"
+               target="_blank"
+               rel="noopener noreferrer"
+            >
+  <button
+    className="bg-gradient-to-r from-green-500 to-blue-500 hover:from-blue-500 hover:to-cyan-500 text-black text-lg font-semibold py-3 px-8 rounded-full shadow-lg transition duration-300"
+  >
+    Watch This
+  </button>
+</a>
+            </motion.div>
           </div>
-          </motion.div>
+
+          {/* Steps */}
+          <div className="w-full md:w-[60%] space-y-8">
+            <motion.div
+              initial={{ opacity: 0, x: 60 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.7, delay: 0.15 }}
+              className="flex flex-col sm:flex-row items-start gap-6 p-6 bg-gray-900 rounded-xl shadow-lg md:mr-20"
+            >
+              <div className="flex-shrink-0">
+                <div className="w-14 h-14 flex items-center justify-center bg-green-500 text-black text-lg font-bold rounded-full shadow-md">
+                  1
+                </div>
+              </div>
+              <div>
+                <h4 className="text-lg md:text-xl font-semibold mb-2">
+                   Create an Account
+                </h4>
+                <p className="text-gray-400">
+                   Sign up on our platform to get started with brain tumor detection and manage your prediction history securely.
+                </p>
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, x: 60 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.7, delay: 0.15 }}
+              className="flex flex-col sm:flex-row items-start gap-6 p-6 bg-gray-900 rounded-xl shadow-lg md:ml-10"
+            >
+              <div className="flex-shrink-0">
+                <div className="w-14 h-14 flex items-center justify-center bg-green-500 text-black text-lg font-bold rounded-full shadow-md">
+                  2
+                </div>
+              </div>
+              <div>
+                <h4 className="text-lg md:text-xl font-semibold mb-2">
+                  Login to the Dashboard
+                </h4>
+                <p className="text-gray-400">
+                   Access your dashboard to begin the detection process and explore
+                   additional features like feedback and contact .
+                </p>
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, x: 60 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.7, delay: 0.3 }}
+              className="flex flex-col sm:flex-row items-start gap-6 p-6 bg-gray-900 rounded-xl shadow-lg md:mr-20"
+            >
+              <div className="flex-shrink-0">
+                <div className="w-14 h-14 flex items-center justify-center bg-green-500 text-black text-lg font-bold rounded-full shadow-md">
+                  3
+                </div>
+              </div>
+              <div>
+                <h4 className="text-lg md:text-xl font-semibold mb-2">
+                  Upload Brain Scan Image
+                </h4>
+                <p className="text-gray-400">
+                 On the prediction page, upload the MRI or CT scan image of the brain
+                 where the tumor needs to be detected.
+
+                </p>
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, x: 60 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.7, delay: 0.45 }}
+              className="flex flex-col sm:flex-row items-start gap-6 p-6 bg-gray-900 rounded-xl shadow-lg md:ml-10"
+            >
+              <div className="flex-shrink-0">
+                <div className="w-14 h-14 flex items-center justify-center bg-green-500 text-black text-lg font-bold rounded-full shadow-md">
+                  4
+                </div>
+              </div>
+              <div>
+                <h4 className="text-lg md:text-xl font-semibold mb-2">
+                  Click on Predict Button
+                </h4>
+                <p className="text-gray-400">
+                 Once the image is uploaded, click on the Predict button to start
+                  the analysis
+                </p>
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, x: 60 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.7, delay: 0.6 }}
+              className="flex flex-col sm:flex-row items-start gap-6 p-6 bg-gray-900 rounded-xl shadow-lg md:mr-20"
+            >
+              <div className="flex-shrink-0">
+                <div className="w-14 h-14 flex items-center justify-center bg-green-500 text-black text-lg font-bold rounded-full shadow-md">
+                  5
+                </div>
+              </div>
+              <div>
+                <h4 className="text-lg md:text-xl font-semibold mb-2">
+                  View Prediction Result
+                </h4>
+                <p className="text-gray-400">
+                  Our AI model analyzes the image and detects whether a tumor is present,
+                   identifying its type such as glioma, meningioma, or pituitary tumor.
+                </p>
+
+              </div>
+              
+            </motion.div>
+             
+          </div>
+            
         </div>
         
-      </div>
+      </section>
+       <Why />
     </div>
-    
   );
 };
 

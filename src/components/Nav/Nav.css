@@ -1,0 +1,27 @@
+@keyframes textGradientMove {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
+.animated-text {
+  background: linear-gradient(270deg, #00c6ff, #0072ff, #6a00ff, #ff0099, #00c6ff);
+  background-size: 1000% 1000%;
+  -webkit-text-fill-color: transparent;
+  animation: textGradientMove 8s ease infinite;
+}
+@keyframes rotateBrain {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.rotate-animation {
+  animation: rotateBrain 10s linear infinite;
+}
