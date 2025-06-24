@@ -45,11 +45,13 @@ const Home = () => {
                 Upload your brain scan images and let the system detect the presence of a tumor with precision.
               </p>
               <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
+             <Link to="/prediction">   
                 <button
                   className="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg shadow-lg transition"
                 >
                   Start Prediction
                 </button>
+               </Link>
 
                 <Link to="/about">
                   <button className="border border-white bg-black text-white px-6 py-3 rounded-lg transition">
