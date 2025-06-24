@@ -17,11 +17,13 @@ export default function Feedback() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const email = localStorage.getItem("email");
-    if (!email) {
-      alert("Register or log in first");
-      return;
-    }
+     const email = localStorage.getItem("userEmail");
+
+  if (!email) {
+    alert("Please register or log in first");
+    return;
+  }
+
     const res = await fetch("https://brain-tumourbackend.onrender.com/feedback", {
       method: "POST",
       headers: { "Content-Type": "application/json" },

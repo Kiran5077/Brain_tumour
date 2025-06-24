@@ -26,7 +26,7 @@ const Home = () => {
       <div className="relative w-full h-[100vh] overflow-hidden">
         <video
           className="absolute top-12 left-0 w-full h-full object-center object-cover"
-          src="/assets/video.mp4"
+          src="/assets/video2.mp4"
           autoPlay
           muted
           loop

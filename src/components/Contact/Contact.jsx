@@ -19,6 +19,13 @@ const Contact = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+      const email = localStorage.getItem("userEmail");
+
+  if (!email) {
+    alert("Please register or log in first");
+    return;
+  }
+
     try {
       await axios.post("https://brain-tumourbackend.onrender.com/contact", form);
       alert("Message sent successfully!");
