@@ -10,16 +10,6 @@ const Home = () => {
   const [introRef, introInView] = useInView({ triggerOnce: true, threshold: 0.3 });
   const [showHeroBox, setShowHeroBox] = useState(true); // Control hero box visibility
 
-  const handleStartPrediction = () => {
-    const userEmail = localStorage.getItem("email");
-    if (!userEmail) {
-      alert("Please register or login first.");
-      navigate("/user");
-    } else {
-      navigate("/prediction");
-    }
-  };
-
   return (
     <div className="bg-white text-gray-900 font-quicksand">
       {/* Hero Section */}
@@ -56,7 +46,6 @@ const Home = () => {
               </p>
               <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
                 <button
-                  onClick={handleStartPrediction}
                   className="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg shadow-lg transition"
                 >
                   Start Prediction
