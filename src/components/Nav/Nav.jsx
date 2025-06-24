@@ -75,8 +75,7 @@ const Nav = () => {
           {isUser && !isAdmin && (
             <>
               <Link to="/prediction" className="hover:text-gray-300"><i className="fas fa-brain"></i>PREDICTION</Link>
-              <Link to="/feedback" className="hover:text-gray-300"> <i className="fas fa-comment-dots"></i>FEEDBACK</Link>
-              <span className="text-blue-400">{userEmail}</span>
+              <Link to="/feedback" className="hover:text-gray-300"><i className="fas fa-comment-dots"></i>FEEDBACK</Link>
             </>
           )}
 
