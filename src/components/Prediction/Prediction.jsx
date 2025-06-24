@@ -20,9 +20,7 @@ const Prediction = () => {
 
   const handleUpload = async (e) => {
     e.preventDefault();
-    const storedEmail = localStorage.getItem("userEmail");
     if (!selectedFile) return alert("Please select a brain scan file to upload.");
-    if (!storedEmail) return alert("Please register or log in first to use the prediction feature.");
 
     const formData = new FormData();
     formData.append("file", selectedFile);
