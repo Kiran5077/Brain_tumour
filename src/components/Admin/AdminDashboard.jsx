@@ -18,7 +18,7 @@ const AdminDashboard = () => {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const res = await fetch("https://brain-tumourbackend.onrender.com/admin-dashboard");
+        const res = await fetch("https://brain-tumourbackend.onrender.com//admin-dashboard");
         const data = await res.json();
 
         if (res.ok && data.users) {
