@@ -10,7 +10,7 @@ const Nav = () => {
 
   const isAdmin = localStorage.getItem("isAdmin") === "true";
   const isUser = localStorage.getItem("isUser") === "true";
-  const userEmail = localStorage.getItem("userEmail") || "";
+  const userEmail = localStorage.getItem("email") || "";
   const adminEmail = localStorage.getItem("adminEmail") || "";
 
   const handleLogout = () => {
@@ -52,10 +52,11 @@ const Nav = () => {
         <div className="hidden md:flex items-center space-x-6 text-sm font-semibold">
           <Link to="/" className="hover:bg-gray-700 px-2 py-1 rounded flex items-center space-x-1"><i className="fas fa-home"></i><span>HOME</span></Link>
           <Link to="/about" className="hover:bg-gray-700 px-2 py-1 rounded flex items-center space-x-1"><i className="fas fa-info-circle"></i><span>ABOUT</span></Link>
-          <Link to="/contact" className="hover:bg-gray-700 px-2 py-1 rounded flex items-center space-x-1"><i className="fas fa-envelope"></i><span>CONTACT</span></Link>
+          
 
           {!isAdmin && !isUser && (
             <>
+              <Link to="/contact" className="hover:bg-gray-700 px-2 py-1 rounded flex items-center space-x-1"><i className="fas fa-envelope"></i><span>CONTACT</span></Link>
               <Link to="/feedback" className="hover:bg-gray-700 px-2 py-1 rounded flex items-center space-x-1"><i className="fas fa-comment-dots"></i><span>FEEDBACK</span></Link>
               <Link to="/user" className="hover:bg-gray-700 px-2 py-1 rounded flex items-center space-x-1"><i className="fas fa-user"></i><span>USER</span></Link>
               <Link to="/register" className="bg-green-600 text-white px-3 py-1 rounded hover:bg-blue-700 flex items-center space-x-1"><i className="fas fa-user-plus"></i><span>Register</span></Link>
@@ -64,18 +65,20 @@ const Nav = () => {
 
           {isAdmin && (
             <>
-              <Link to="/managecontact" className="hover:text-gray-300">MNGCONTACT</Link>
-              <Link to="/adminfeedback" className="hover:text-gray-300">MNGFEEDBACK</Link>
-              <Link to="/adminprediction" className="hover:text-gray-300">MNGPREDICTION</Link>
-              <Link to="/admin-dashboard" className="hover:text-gray-300">REG USERS</Link>
+              <Link to="/managecontact" className="flex items-center space-x-1 hover:text-gray-300"><i className="fas fa-tasks"></i><span>MNGCONTACT</span></Link>
+              <Link to="/adminfeedback" className="flex items-center space-x-1 hover:text-gray-300"><i className="fas fa-comments"></i><span>MNGFEEDBACK</span></Link>
+              <Link to="/adminprediction" className="flex items-center space-x-1 hover:text-gray-300"><i className="fas fa-microscope"></i><span>MNGPREDICTION</span></Link>
+              <Link to="/admin-dashboard" className="flex items-center space-x-1 hover:text-gray-300"><i className="fas fa-users"></i><span>REG USERS</span></Link>
               <span className="text-blue-400">{adminEmail}</span>
             </>
           )}
 
           {isUser && !isAdmin && (
             <>
-              <Link to="/prediction" className="hover:text-gray-300"><i className="fas fa-brain"></i>PREDICTION</Link>
-              <Link to="/feedback" className="hover:text-gray-300"><i className="fas fa-comment-dots"></i>FEEDBACK</Link>
+            <Link to="/contact" className="hover:bg-gray-700 px-2 py-1 rounded flex items-center space-x-1"><i className="fas fa-envelope"></i><span>CONTACT</span></Link>
+              <Link to="/prediction" className="flex items-center space-x-1 hover:text-gray-300"><i className="fas fa-brain"></i><span>PREDICTION</span></Link>
+              <Link to="/feedback" className="flex items-center space-x-1 hover:text-gray-300"><i className="fas fa-comment-dots"></i><span>FEEDBACK</span></Link>
+              <span className="text-blue-400">{userEmail}</span>
             </>
           )}
 
@@ -109,10 +112,11 @@ const Nav = () => {
           <ul className="space-y-3 text-sm font-medium">
             <li><Link to="/" onClick={() => setMobileMenuOpen(false)} className="flex items-center space-x-1 hover:bg-gray-700 px-2 py-1 rounded"><i className="fas fa-home"></i><span>HOME</span></Link></li>
             <li><Link to="/about" onClick={() => setMobileMenuOpen(false)} className="flex items-center space-x-1 hover:bg-gray-700 px-2 py-1 rounded"><i className="fas fa-info-circle"></i><span>ABOUT</span></Link></li>
-            <li><Link to="/contact" onClick={() => setMobileMenuOpen(false)} className="flex items-center space-x-1 hover:bg-gray-700 px-2 py-1 rounded"><i className="fas fa-envelope"></i><span>CONTACT</span></Link></li>
+           
 
             {!isAdmin && !isUser && (
               <>
+               <li><Link to="/contact" onClick={() => setMobileMenuOpen(false)} className="flex items-center space-x-1 hover:bg-gray-700 px-2 py-1 rounded"><i className="fas fa-envelope"></i><span>CONTACT</span></Link></li>
                 <li><Link to="/feedback" onClick={() => setMobileMenuOpen(false)} className="flex items-center space-x-1 hover:bg-gray-700 px-2 py-1 rounded"><i className="fas fa-comment-dots"></i><span>FEEDBACK</span></Link></li>
                 <li><Link to="/user" onClick={() => setMobileMenuOpen(false)} className="flex items-center space-x-1 hover:bg-gray-700 px-2 py-1 rounded"><i className="fas fa-user"></i><span>USER</span></Link></li>
                 <li><Link to="/register" onClick={() => setMobileMenuOpen(false)} className="bg-green-600 text-white px-3 py-1 rounded hover:bg-green-700 flex items-center space-x-1 justify-center"><i className="fas fa-user-plus"></i><span>Register</span></Link></li>
@@ -121,25 +125,24 @@ const Nav = () => {
 
             {isAdmin && (
               <>
-                <li><Link to="/managecontact" onClick={() => setMobileMenuOpen(false)} className="block hover:text-gray-300">MNGCONTACT</Link></li>
-                <li><Link to="/adminfeedback" onClick={() => setMobileMenuOpen(false)} className="block hover:text-gray-300">MNGFEEDBACK</Link></li>
-                <li><Link to="/adminprediction" onClick={() => setMobileMenuOpen(false)} className="block hover:text-gray-300">MNGPREDICTION</Link></li>
-                <li><Link to="/admin-dashboard" onClick={() => setMobileMenuOpen(false)} className="block hover:text-gray-300">REG USERS</Link></li>
+                <li><Link to="/managecontact" onClick={() => setMobileMenuOpen(false)} className="flex items-center space-x-1 hover:text-gray-300"><i className="fas fa-tasks"></i><span>MNGCONTACT</span></Link></li>
+                <li><Link to="/adminfeedback" onClick={() => setMobileMenuOpen(false)} className="flex items-center space-x-1 hover:text-gray-300"><i className="fas fa-comments"></i><span>MNGFEEDBACK</span></Link></li>
+                <li><Link to="/adminprediction" onClick={() => setMobileMenuOpen(false)} className="flex items-center space-x-1 hover:text-gray-300"><i className="fas fa-microscope"></i><span>MNGPREDICTION</span></Link></li>
+                <li><Link to="/admin-dashboard" onClick={() => setMobileMenuOpen(false)} className="flex items-center space-x-1 hover:text-gray-300"><i className="fas fa-users"></i><span>REG USERS</span></Link></li>
                 <li className="text-blue-400">{adminEmail}</li>
               </>
             )}
 
             {isUser && !isAdmin && (
               <>
-                <li><Link to="/prediction" onClick={() => setMobileMenuOpen(false)} className="block hover:text-gray-300"><i className='fas fa-brain'></i>PREDICTION</Link></li>
-                <li><Link to="/feedback" onClick={() => setMobileMenuOpen(false)} className="block hover:text-gray-300"><i className="fas fa-comment-dots"></i>FEEDBACK</Link></li>
+               <li><Link to="/contact" onClick={() => setMobileMenuOpen(false)} className="flex items-center space-x-1 hover:bg-gray-700 px-2 py-1 rounded"><i className="fas fa-envelope"></i><span>CONTACT</span></Link></li>
+                <li><Link to="/prediction" onClick={() => setMobileMenuOpen(false)} className="flex items-center space-x-1 hover:text-gray-300"><i className="fas fa-brain"></i><span>PREDICTION</span></Link></li>
+                <li><Link to="/feedback" onClick={() => setMobileMenuOpen(false)} className="flex items-center space-x-1 hover:text-gray-300"><i className="fas fa-comment-dots"></i><span>FEEDBACK</span></Link></li>
               </>
             )}
 
             {(isAdmin || isUser) && (
-              <>
-                <li><button onClick={() => { handleLogout(); setMobileMenuOpen(false); }} className="block w-full text-left hover:text-red-700">Logout</button></li>
-              </>
+              <li><button onClick={() => { handleLogout(); setMobileMenuOpen(false); }} className="block w-full text-left hover:text-red-700">Logout</button></li>
             )}
           </ul>
         </div>
