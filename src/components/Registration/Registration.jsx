@@ -39,7 +39,7 @@ const Register = () => {
     setLoading(true);
 
     try {
-      const response = await fetch("https://brain-tumourbackend.onrender.com/user-register", {
+      const response = await fetch("https://brain-server-xuxb.onrender.com/user-register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name, email, password }),
@@ -63,7 +63,7 @@ const Register = () => {
   const handleVerifyOtp = async () => {
     setLoading(true);
     try {
-      const res = await fetch("https://brain-tumourbackend.onrender.com/verify-otp", {
+      const res = await fetch("https://brain-server-xuxb.onrender.com/verify-otp", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, otp }),
