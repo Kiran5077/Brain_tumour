@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { toast } from "react-toastify";
 import brainBg from "/assets/brain8.webp";
 
-const API = "https://brain-server-xuxb.onrender.com";
+const API = "https://brain-tumourbackend.onrender.com";
 
 const Prediction = () => {
   const [selectedFile, setSelectedFile] = useState(null);
