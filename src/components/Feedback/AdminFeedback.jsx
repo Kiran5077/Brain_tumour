@@ -7,7 +7,7 @@ const AdminFeedback = () => {
 
   const fetchFeedback = async () => {
     try {
-      const response = await fetch("https://brain-server-xuxb.onrender.com/get-feedback");
+      const response = await fetch("https://brain-tumourbackend.onrender.com/get-feedback");
       const data = await response.json();
 
       if (response.ok && data.success) {
@@ -27,7 +27,7 @@ const AdminFeedback = () => {
     if (!confirmDelete) return;
 
     try {
-      const response = await fetch(`https://brain-server-xuxb.onrender.com/api/delete_feedback/${id}`, {
+      const response = await fetch(`https://brain-tumourbackend.onrender.com/api/delete_feedback/${id}`, {
         method: "DELETE",
       });
 
