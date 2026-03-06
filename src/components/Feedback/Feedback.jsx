@@ -24,7 +24,7 @@ export default function Feedback() {
     return;
   }
 
-    const res = await fetch("https://brain-server-xuxb.onrender.com/feedback", {
+    const res = await fetch("https://brain-tumourbackend.onrender.com/feedback", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(formData),
