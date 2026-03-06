@@ -33,7 +33,6 @@ const AdminPrediction = () => {
     method: 'POST',
     body: formData,
   });
-}
 
       const data = await res.json();
       if (res.ok) {
