@@ -18,7 +18,7 @@ const Login = ({ role = "user" }) => {
 
     try {
       const loginEndpoint = role === "admin" ? "/admin-login" : "/user-login";
-      const response = await https://brain-server-xuxb.onrender.com${loginEndpoint}`, {
+      const response = await https://brain-tumourbackend.onrender.com${loginEndpoint}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
