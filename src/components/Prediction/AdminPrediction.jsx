@@ -29,10 +29,11 @@ const AdminPrediction = () => {
     formData.append('email', email);
 
     try {
-      const res = await fetch('https://brain-tumourbackend.onrender.com/predict', {
-        method: 'POST',
-        body: formData,
-      });
+  const res = await fetch('https://brain-tumourbackend.onrender.com/predict', {
+    method: 'POST',
+    body: formData,
+  });
+}
 
       const data = await res.json();
       if (res.ok) {
@@ -48,7 +49,7 @@ const AdminPrediction = () => {
   useEffect(() => {
     const fetchPredictions = async () => {
       try {
-        const response = await fetch("https://brain-server-xuxb.onrender.com/history");
+        const response = await fetch("https://brain-tumourbackend.onrender.com/history");
         const data = await response.json();
 
         if (response.ok) {
@@ -68,7 +69,7 @@ const AdminPrediction = () => {
 
   const handleDeletePrediction = async (id) => {
     try {
-      const res = await fetch(`https://brain-server-xuxb.onrender.com/delete-history/${id}`, {
+      const res = await fetch(`https://brain-tumourbackend.onrender.com/delete-history/${id}`, {
         method: "DELETE",
       });
 
