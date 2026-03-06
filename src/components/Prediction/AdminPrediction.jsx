@@ -29,7 +29,7 @@ const AdminPrediction = () => {
     formData.append('email', email);
 
     try {
-      const res = await fetch('https://brain-server-xuxb.onrender.com/predict', {
+      const res = await fetch('https://brain-tumourbackend.onrender.com/predict', {
         method: 'POST',
         body: formData,
       });
